@@ -90,11 +90,34 @@ function awfn_block_assets() { // phpcs:ignore
 	);
 }
 
+/**
+ * Output attributes for register_block_type()
+ *
+ * @return array
+ * @since 1.0.0
+ *
+ */
 function awfn_atts() {
 	return [
 		'icao' => [
 			'type' => 'string',
 			'default' => 'KZZV'
+		],
+		'showMetar' => [
+			'type' => 'boolean',
+			'default' => true
+		],
+		'showTaf' => [
+			'type' => 'boolean',
+			'default' => true
+		],
+		'showPireps' => [
+			'type' => 'boolean',
+			'default' => true
+		],
+		'radialDist' => [
+			'type' => 'number',
+			'default' => 100
 		]
 	];
 }
