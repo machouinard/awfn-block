@@ -64,7 +64,7 @@ class Weather {
 			if ( ! is_wp_error( $response ) ) {
 				if ( 200 == wp_remote_retrieve_response_code( $response ) ) {
 					$body = wp_remote_retrieve_body( $response );
-					set_transient( $this->hash, $body, 300 );
+					set_transient( $this->hash, $body, 60 * 30 );
 				} else {
 					$error_message = wp_remote_retrieve_response_message( $response );
 				}

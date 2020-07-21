@@ -13,6 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// For awfn_server_side()
 require_once( plugin_dir_path( __FILE__ ) . 'block/awfn.php' );
 
 /**
@@ -101,7 +102,7 @@ function awfn_atts() {
 	return [
 		'icao' => [
 			'type' => 'string',
-			'default' => 'KZZV'
+			'default' => 'KDTW'
 		],
 		'showMetar' => [
 			'type' => 'boolean',

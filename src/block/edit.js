@@ -8,14 +8,12 @@ const {
 	      PanelBody,
 	      PanelRow
       }                                      = wp.components;
-//import ServerSideRender from '@wordpress/server-side-render';
 const { serverSideRender: ServerSideRender } = wp;
-import { withState } from '@wordpress/compose';
 
 export default class extends Component {
 	constructor( props ) {
 		super( ...arguments );
-		console.log( 'props', this.props );
+		//console.log( 'props', this.props );
 		this.state = {};
 		this.props = props;
 	}
@@ -33,7 +31,7 @@ export default class extends Component {
 
 		const onIcaoChange  = icao => {
 			this.isEditing();
-			// Limit ICAO to 3 characters
+			// Limit ICAO to 4 characters
 			if ( 4 < icao.length ) {
 				icao = icao.substr( 0, 4 );
 			}

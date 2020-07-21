@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@wordpress/server-side-render": "^1.16.1",
-    "cgb-scripts": "1.23.1"
+    "cgb-scripts": "1.23.1",
+    "metar": "^1.0.0"
   }
 }
