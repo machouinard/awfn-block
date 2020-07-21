@@ -18,5 +18,13 @@ export default {
 	radialDist: {
 		type: 'number',
 		default: 100
+	},
+	hoursBeforeNow: {
+		type: 'number',
+		default: 2
+	},
+	editing: {
+		type: 'boolean',
+		default: false
 	}
 }

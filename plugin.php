@@ -13,8 +13,10 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+defined( 'ABSPATH' ) || exit;
+
+if ( ! defined( 'AWFN_INC_PATH' ) ) {
+	define( 'AWFN_INC_PATH', plugin_dir_path( __FILE__ ) . 'inc/' );
 }
 
 /**

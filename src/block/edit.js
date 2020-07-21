@@ -24,25 +24,41 @@ export default class extends Component {
 		console.log( 'awfn unmounting' );
 	}
 
-	render() {
-		const { attributes: { icao, showMetar, showTaf, showPireps, radialDist }, setAttributes } = this.props;
+	isEditing = () => {
+		this.props.setAttributes( { editing: true } );
+	};
 
-		const onIcaoChange = icao => {
+	render() {
+		const { attributes: { icao, showMetar, showTaf, showPireps, radialDist, hoursBeforeNow, editing }, setAttributes } = this.props;
+
+		const onIcaoChange  = icao => {
+			this.isEditing();
 			// Limit ICAO to 3 characters
 			if ( 4 < icao.length ) {
 				icao = icao.substr( 0, 4 );
 			}
-			//console.log('new icao', icao);
 			setAttributes( { icao } );
 		};
-		const onDistChange = dist => {
+		const onDistChange  = dist => {
+			this.isEditing();
 			console.log( 'dist', dist );
 			setAttributes( { radialDist: dist } );
+		};
+		const onHoursChange = hours => {
+			this.isEditing();
+			setAttributes( { hoursBeforeNow: hours } );
 		};
 		return (
 			[
 				<InspectorControls key="ic-1">
 					<PanelBody title={ __( 'Wx Options' ) }>
+						<PanelRow>
+							<ToggleControl
+								label={ __( 'Editing' ) }
+								checked={ editing }
+								onChange={ () => setAttributes( { editing: !editing } ) }
+							/>
+						</PanelRow>
 						<PanelRow>
 							<TextControl
 								label={ __( 'ICAO' ) }
@@ -55,21 +71,30 @@ export default class extends Component {
 							<ToggleControl
 								label={ __( 'Show METAR' ) }
 								checked={ showMetar }
-								onChange={ () => setAttributes( { showMetar: !showMetar } ) }
+								onChange={ () => {
+									this.isEditing();
+									setAttributes( { showMetar: !showMetar } );
+								} }
 							/>
 						</PanelRow>
 						<PanelRow>
 							<ToggleControl
 								label={ __( 'Show TAF' ) }
 								checked={ showTaf }
-								onChange={ () => setAttributes( { showTaf: !showTaf } ) }
+								onChange={ () => {
+									this.isEditing();
+									setAttributes( { showTaf: !showTaf } );
+								} }
 							/>
 						</PanelRow>
 						<PanelRow>
 							<ToggleControl
 								label={ __( 'Show PIREPS' ) }
 								checked={ showPireps }
-								onChange={ () => setAttributes( { showPireps: !showPireps } ) }
+								onChange={ () => {
+									this.isEditing();
+									setAttributes( { showPireps: !showPireps } );
+								} }
 							/>
 						</PanelRow>
 						<PanelRow>
@@ -82,6 +107,15 @@ export default class extends Component {
 								step={ 25 }
 							/>
 						</PanelRow>
+						<PanelRow>
+							<RangeControl
+								label="Hours before now"
+								value={ hoursBeforeNow }
+								onChange={ onHoursChange }
+								min={ 1 }
+								max={ 6 }
+							/>
+						</PanelRow>
 					</PanelBody>
 				</InspectorControls>,
 				<ServerSideRender
@@ -92,7 +126,9 @@ export default class extends Component {
 						showMetar,
 						showTaf,
 						showPireps,
-						radialDist
+						radialDist,
+						hoursBeforeNow,
+						editing
 					} }
 				/>
 			]
