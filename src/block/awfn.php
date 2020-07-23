@@ -42,7 +42,6 @@ function awfn_server_side( $atts, $content ) {
 	} else {
 		$awfn  = new \AWFN\Weather( $options );
 		$metar = $awfn->getMetar();
-		$x     = 5;
 
 		return "<p class='coded-metar'>{$metar}</p>";
 	}

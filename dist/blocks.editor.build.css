@@ -11,4 +11,5 @@
  * which makes it higher in priority.
  */
 p.coded-metar {
-  border-width: 2px; }
+  border-width: 2px;
+  color: #bada55; }
